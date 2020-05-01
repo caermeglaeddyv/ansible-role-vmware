@@ -1,0 +1,112 @@
+---
+# tasks file for vmware
+
+
+# Deploy virtual machine(s) from scratch if "vmware_vm_from_scratch"
+# variable is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html):
+- name: vmware | deploy vm(s) from scratch
+  vmware_guest:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    guest_id: "{{ item.guest_id }}"
+    esxi_hostname: "{{ item.esxi_hostname }}"
+    datastore: "{{ item.datastore }}"
+    datacenter: "{{ item.datacenter }}"
+    folder: "{{ item.folder }}"
+    validate_certs: "{{ item.validate_certs }}"
+    state: "{{ item.state }}"
+    hardware:
+      num_cpus: "{{ item.hardware.num_cpus }}"
+      num_cpu_cores_per_socket: "{{ item.hardware.num_cpu_cores_per_socket }}"
+      cpu_limit: "{{ item.hardware.cpu_limit }}"
+      hotadd_cpu: "{{ item.hardware.hotadd_cpu }}"
+      memory_mb: "{{ item.hardware.memory_mb }}"
+      mem_limit: "{{ item.hardware.mem_limit }}"
+      hotadd_memory: "{{ item.hardware.hotadd_memory }}"
+      max_connections: "{{ item.hardware.max_connections }}"
+    networks: "{{ item.networks }}"
+    disk: "{{ item.disk }}"
+  with_items: "{{ vmware_vm_from_scratch }}"
+  when: vmware_vm_from_scratch is defined
+
+# Deploy virtual machine(s) from template if "vmware_vm_from_template" variable
+# is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html):
+- name: vmware | deploy vm(s) from template
+  vmware_guest:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    esxi_hostname: "{{ item.esxi_hostname }}"
+    datastore: "{{ item.datastore }}"
+    datacenter: "{{ item.datacenter }}"
+    folder: "{{ item.folder }}"
+    template: "{{ item.template }}"
+    validate_certs: "{{ item.validate_certs }}"
+    state: "{{ item.state }}"
+    hardware:
+      num_cpus: "{{ item.hardware.num_cpus }}"
+      num_cpu_cores_per_socket: "{{ item.hardware.num_cpu_cores_per_socket }}"
+      cpu_limit: "{{ item.hardware.cpu_limit }}"
+      hotadd_cpu: "{{ item.hardware.hotadd_cpu }}"
+      memory_mb: "{{ item.hardware.memory_mb }}"
+      mem_limit: "{{ item.hardware.mem_limit }}"
+      hotadd_memory: "{{ item.hardware.hotadd_memory }}"
+      max_connections: "{{ item.hardware.max_connections }}"
+    networks: "{{ item.networks }}"
+    customization:
+      dns_servers: "{{ item.customization.dns_servers }}"
+  with_items: "{{ vmware_vm_from_template }}"
+  when: vmware_vm_from_template is defined
+
+# Deploy extra disk(s) to virtual machine(s) if "vmware_extra_disk"
+# variable is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html):
+- name: vmware | deploy extra disk(s)
+  vmware_guest_disk:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    datacenter: "{{ item.datacenter }}"
+    folder: "{{ item.folder }}"
+    validate_certs: "{{ item.validate_certs }}"
+    disk: "{{ item.disk }}"
+  with_items: "{{ vmware_extra_disk }}"
+  when: vmware_extra_disk is defined
+
+# Snapshot virtual machine(s) if "vmware_snapshot"
+# variable is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_snapshot_module.html):
+- name: vmware | snapshot
+  vmware_guest_snapshot:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    datacenter: "{{ item.datacenter }}"
+    folder: "{{ item.folder }}"
+    validate_certs: "{{ item.validate_certs }}"
+    state: "{{ item.state }}"
+    snapshot_name: "{{ item.snapshot_name }}"
+    description: "{{ item.description }}"
+  with_items: "{{ vmware_snapshot }}"
+  when: vmware_snapshot is defined
+
+# Change powerstate of virtual machine(s) if "vmware_powerstate"
+# variable is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_powerstate_module.html):
+- name: vmware | powerstate
+  vmware_guest_powerstate:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    validate_certs: "{{ item.validate_certs }}"
+    state: "{{ item.state }}"
+  with_items: "{{ vmware_powerstate }}"
+  when: vmware_powerstate is defined

@@ -1,0 +1,98 @@
+---
+# defaults file for vmware
+
+
+vmware_hostname: ""
+
+vmware_username: ""
+
+vmware_password: ""
+
+vmware_vm_from_scratch: []
+# - name: ""
+#   guest_id: ""
+#   esxi_hostname: ""
+#   datastore: ""
+#   datacenter: ""
+#   folder: ""
+#   validate_certs: 
+#   state: ""
+#   hardware:
+#     num_cpus: 
+#     num_cpu_cores_per_socket: 
+#     cpu_limit: 
+#     hotadd_cpu: 
+#     memory_mb: 
+#     mem_limit: 
+#     hotadd_memory: 
+#     max_connections: 
+#   networks: 
+#   - name: ""
+#     vlan: 
+#     device_type: ""
+#     dvswitch_name: ""
+#     start_connected: 
+#     state: ""
+#   disk:
+#   - size_gb: ""
+#     type: ""
+
+vmware_vm_from_template: []
+# - name: ""
+#   esxi_hostname: ""
+#   datastore: ""
+#   datacenter: ""
+#   folder: ""
+#   template: ""
+#   validate_certs: 
+#   state: ""
+#   hardware:
+#     num_cpus: 
+#     num_cpu_cores_per_socket: 
+#     cpu_limit: 
+#     hotadd_cpu: 
+#     memory_mb: 
+#     mem_limit: 
+#     hotadd_memory: 
+#     max_connections: 
+#   networks:
+#   - name: ""
+#     vlan: 
+#     device_type: ""
+#     dvswitch_name: ""
+#     start_connected: 
+#     type: ""
+#     ip: 
+#     netmask: 
+#     gateway: 
+#     state: ""  
+#   customization:
+#     dns_servers:
+#     - ""
+
+vmware_extra_disk: []
+# - name: ""
+#   datacenter: ""
+#   folder: ""
+#   validate_certs: 
+#   disk:
+#   - size_gb: 
+#     type: ""
+#     datastore: ""
+#     scsi_controller: 
+#     unit_number: 
+#     state: ""
+
+vmware_snapshot: []
+# - name: ""
+#   datacenter: ""
+#   folder: ""
+#   validate_certs: 
+#   state: ""
+#   snapshot_name: ""
+#   description: ""
+
+vmware_powerstate: []
+# - name: ""
+#   validate_certs: ""
+#   state: ""
