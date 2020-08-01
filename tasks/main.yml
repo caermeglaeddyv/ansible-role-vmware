@@ -79,6 +79,20 @@
   with_items: "{{ vmware_extra_disk }}"
   when: vmware_extra_disk is defined
 
+# Change powerstate of virtual machine(s) if "vmware_powerstate"
+# variable is defined (no defaults, see documentation of module used at
+# https://docs.ansible.com/ansible/latest/modules/vmware_guest_powerstate_module.html):
+- name: vmware | powerstate
+  vmware_guest_powerstate:
+    hostname: "{{ vmware_hostname }}"
+    username: "{{ vmware_username }}"
+    password: "{{ vmware_password }}"
+    name: "{{ item.name }}"
+    validate_certs: "{{ item.validate_certs }}"
+    state: "{{ item.state }}"
+  with_items: "{{ vmware_powerstate }}"
+  when: vmware_powerstate is defined
+
 # Snapshot virtual machine(s) if "vmware_snapshot"
 # variable is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_snapshot_module.html):
@@ -96,17 +110,3 @@
     description: "{{ item.description }}"
   with_items: "{{ vmware_snapshot }}"
   when: vmware_snapshot is defined
-
-# Change powerstate of virtual machine(s) if "vmware_powerstate"
-# variable is defined (no defaults, see documentation of module used at
-# https://docs.ansible.com/ansible/latest/modules/vmware_guest_powerstate_module.html):
-- name: vmware | powerstate
-  vmware_guest_powerstate:
-    hostname: "{{ vmware_hostname }}"
-    username: "{{ vmware_username }}"
-    password: "{{ vmware_password }}"
-    name: "{{ item.name }}"
-    validate_certs: "{{ item.validate_certs }}"
-    state: "{{ item.state }}"
-  with_items: "{{ vmware_powerstate }}"
-  when: vmware_powerstate is defined
