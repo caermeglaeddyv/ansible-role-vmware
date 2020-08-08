@@ -1,11 +1,9 @@
 ---
-# tasks file for vmware
-
-
+### tasks file for vmware
 # Deploy virtual machine(s) from scratch if "vmware_vm_from_scratch"
 # variable is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html):
-- name: vmware | deploy vm(s) from scratch
+- name: vmware | manage vm(s) from scratch
   vmware_guest:
     hostname: "{{ vmware_hostname }}"
     username: "{{ vmware_username }}"
@@ -31,11 +29,13 @@
     disk: "{{ item.disk }}"
   with_items: "{{ vmware_vm_from_scratch }}"
   when: vmware_vm_from_scratch is defined
+  tags:
+  - never
 
 # Deploy virtual machine(s) from template if "vmware_vm_from_template" variable
 # is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html):
-- name: vmware | deploy vm(s) from template
+- name: vmware | manage vm(s) from template
   vmware_guest:
     hostname: "{{ vmware_hostname }}"
     username: "{{ vmware_username }}"
@@ -62,11 +62,13 @@
       dns_servers: "{{ item.customization.dns_servers }}"
   with_items: "{{ vmware_vm_from_template }}"
   when: vmware_vm_from_template is defined
+  tags:
+  - never
 
 # Deploy extra disk(s) to virtual machine(s) if "vmware_extra_disk"
 # variable is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html):
-- name: vmware | deploy extra disk(s)
+- name: vmware | manage extra disk(s)
   vmware_guest_disk:
     hostname: "{{ vmware_hostname }}"
     username: "{{ vmware_username }}"
@@ -78,11 +80,13 @@
     disk: "{{ item.disk }}"
   with_items: "{{ vmware_extra_disk }}"
   when: vmware_extra_disk is defined
+  tags:
+  - never
 
 # Change powerstate of virtual machine(s) if "vmware_powerstate"
 # variable is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_powerstate_module.html):
-- name: vmware | powerstate
+- name: vmware | control powerstate
   vmware_guest_powerstate:
     hostname: "{{ vmware_hostname }}"
     username: "{{ vmware_username }}"
@@ -92,11 +96,13 @@
     state: "{{ item.state }}"
   with_items: "{{ vmware_powerstate }}"
   when: vmware_powerstate is defined
+  tags:
+  - never
 
 # Snapshot virtual machine(s) if "vmware_snapshot"
 # variable is defined (no defaults, see documentation of module used at
 # https://docs.ansible.com/ansible/latest/modules/vmware_guest_snapshot_module.html):
-- name: vmware | snapshot
+- name: vmware | manage snapshot(s)
   vmware_guest_snapshot:
     hostname: "{{ vmware_hostname }}"
     username: "{{ vmware_username }}"
@@ -110,3 +116,5 @@
     description: "{{ item.description }}"
   with_items: "{{ vmware_snapshot }}"
   when: vmware_snapshot is defined
+  tags:
+  - never
