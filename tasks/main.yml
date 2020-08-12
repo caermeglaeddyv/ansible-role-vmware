@@ -28,7 +28,7 @@
     networks: "{{ item.networks }}"
     disk: "{{ item.disk }}"
   with_items: "{{ vmware_vm_from_scratch }}"
-  when: vmware_vm_from_scratch is defined
+  when: vmware_vm_from_scratch | bool
   tags:
   - never
 
@@ -61,7 +61,7 @@
     customization:
       dns_servers: "{{ item.customization.dns_servers }}"
   with_items: "{{ vmware_vm_from_template }}"
-  when: vmware_vm_from_template is defined
+  when: vmware_vm_from_template | bool
   tags:
   - never
 
@@ -79,7 +79,7 @@
     validate_certs: "{{ item.validate_certs }}"
     disk: "{{ item.disk }}"
   with_items: "{{ vmware_extra_disk }}"
-  when: vmware_extra_disk is defined
+  when: vmware_extra_disk | bool
   tags:
   - never
 
@@ -95,7 +95,7 @@
     validate_certs: "{{ item.validate_certs }}"
     state: "{{ item.state }}"
   with_items: "{{ vmware_powerstate }}"
-  when: vmware_powerstate is defined
+  when: vmware_powerstate | bool
   tags:
   - never
 
@@ -115,6 +115,6 @@
     snapshot_name: "{{ item.snapshot_name }}"
     description: "{{ item.description }}"
   with_items: "{{ vmware_snapshot }}"
-  when: vmware_snapshot is defined
+  when: vmware_snapshot | bool
   tags:
   - never
