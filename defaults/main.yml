@@ -15,23 +15,23 @@ vmware_vm_from_scratch: []
 #   datastore: ""
 #   datacenter: ""
 #   folder: ""
-#   validate_certs: 
+#   validate_certs:
 #   state: ""
 #   hardware:
-#     num_cpus: 
-#     num_cpu_cores_per_socket: 
-#     cpu_limit: 
-#     hotadd_cpu: 
-#     memory_mb: 
-#     mem_limit: 
-#     hotadd_memory: 
-#     max_connections: 
-#   networks: 
+#     num_cpus:
+#     num_cpu_cores_per_socket:
+#     cpu_limit:
+#     hotadd_cpu:
+#     memory_mb:
+#     mem_limit:
+#     hotadd_memory:
+#     max_connections:
+#   networks:
 #   - name: ""
-#     vlan: 
+#     vlan:
 #     device_type: ""
 #     dvswitch_name: ""
-#     start_connected: 
+#     start_connected:
 #     state: ""
 #   disk:
 #   - size_gb: ""
@@ -44,28 +44,28 @@ vmware_vm_from_template: []
 #   datacenter: ""
 #   folder: ""
 #   template: ""
-#   validate_certs: 
+#   validate_certs:
 #   state: ""
 #   hardware:
-#     num_cpus: 
-#     num_cpu_cores_per_socket: 
-#     cpu_limit: 
-#     hotadd_cpu: 
-#     memory_mb: 
-#     mem_limit: 
-#     hotadd_memory: 
-#     max_connections: 
+#     num_cpus:
+#     num_cpu_cores_per_socket:
+#     cpu_limit:
+#     hotadd_cpu:
+#     memory_mb:
+#     mem_limit:
+#     hotadd_memory:
+#     max_connections:
 #   networks:
 #   - name: ""
-#     vlan: 
+#     vlan:
 #     device_type: ""
 #     dvswitch_name: ""
-#     start_connected: 
+#     start_connected:
 #     type: ""
-#     ip: 
-#     netmask: 
-#     gateway: 
-#     state: ""  
+#     ip:
+#     netmask:
+#     gateway:
+#     state: ""
 #   customization:
 #     dns_servers:
 #     - ""
@@ -74,20 +74,20 @@ vmware_extra_disk: []
 # - name: ""
 #   datacenter: ""
 #   folder: ""
-#   validate_certs: 
+#   validate_certs:
 #   disk:
-#   - size_gb: 
+#   - size_gb:
 #     type: ""
 #     datastore: ""
-#     scsi_controller: 
-#     unit_number: 
+#     scsi_controller:
+#     unit_number:
 #     state: ""
 
 vmware_snapshot: []
 # - name: ""
 #   datacenter: ""
 #   folder: ""
-#   validate_certs: 
+#   validate_certs:
 #   state: ""
 #   snapshot_name: ""
 #   description: ""
